@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from models import CategoryModel
+from .models import CategoryModel
 from django.views.generic import ListView, DetailView
 
 
@@ -14,4 +13,4 @@ class CategoryListView(ListView):
 class CategoryDetailView(DetailView):
     model = CategoryModel
     template_name = 'category/detail.html'
-    context_object_name = 'category'
+    context_object_name = 'category_detail'

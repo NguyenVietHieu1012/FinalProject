@@ -1,0 +1,116 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Gà Rán Cay",
+      "price": "65.000đ",
+      "url": "/media/images/meat-2.svg",
+      "category": "Fast Food"
+    },
+    {
+      "id": 2,
+      "title": "Burger Đặc Biệt",
+      "price": "150.000đ",
+      "url": "/media/images/burger.svg",
+      "category": "Fast Food"
+    },
+    {
+      "id": 3,
+      "title": "Mì Hộp",
+      "price": "30.000đ",
+      "url": "/media/images/dish-1.svg",
+      "category": "Rice Menu"
+    },
+    {
+      "id": 4,
+      "title": "Khoai tây chiên",
+      "price": "15.000đ",
+      "url": "/media/images/french-fries.svg",
+      "category": "Fast Food"
+    },
+    {
+      "id": 5,
+      "title": "Bánh mì kẹp",
+      "price": "15.000đ",
+      "url": "/media/images/toastbread.png",
+      "category": "Desserts"
+    },
+    {
+      "id": 6,
+      "title": "Bánh quy",
+      "price": "20.000đ",
+      "url": "/media/images/biscuit.png",
+      "category": "Desserts"
+    },
+    {
+      "id": 7,
+      "title": "Bánh ngọt",
+      "price": "15.000đ",
+      "url": "/media/images/ice-cream.png",
+      "category": "Desserts"
+    },
+    {
+      "id": 8,
+      "title": "Mì xào ngao",
+      "price": "60.000đ",
+      "url": "/media/images/dish-1.png",
+      "category": "Fast Food"
+    },
+    {
+      "id": 9,
+      "title": "Cơm gà xé",
+      "price": "45.000đ",
+      "url": "/media/images/dish-2.png",
+      "category": "Fast Food"
+    },
+    {
+      "id": 10,
+      "title": "Bánh kẹp Thổ Nhĩ Kì",
+      "price": "45.000đ",
+      "url": "/media/images/dish-3.png",
+      "category": "Fast Food"
+    },
+    {
+      "id": 11,
+      "title": "Pizza xúc xích",
+      "price": "145.000đ",
+      "url": "/media/images/dish-4.jpg",
+      "category": "Pizza"
+    },
+    {
+      "id": 12,
+      "title": "Mì trộn",
+      "price": "45.000đ",
+      "url": "/media/images/dish-5.png",
+      "category": "Fast Food"
+    },
+    {
+      "id": 13,
+      "title": "Latte Coffee",
+      "price": "50.000đ",
+      "url": "/media/images/coffee.jpg",
+      "category": "Coffee"
+    },
+    {
+      "id": 14,
+      "title": "Latte Coffee",
+      "price": "50.000đ",
+      "url": "/media/images/coffee.jpg",
+      "category": "Coffee"
+    },
+    {
+      "id": 15,
+      "title": "Pizza xúc xích",
+      "price": "145.000đ",
+      "url": "/media/images/dish-4.jpg",
+      "category": "Pizza"
+    },
+    {
+      "id": 16,
+      "title": "Bánh ngọt",
+      "price": "15.000đ",
+      "url": "/media/images/ice-cream.png",
+      "category": "Desserts"
+    }
+  ]
+}

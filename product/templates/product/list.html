@@ -1,10 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "home/base.html" %}
+{% block content %}
+<h1 align="center">Menu</h1>
+</hr>
 
-</body>
-</html>
+<div class="row">
+  <div class="col">
+    <!--Search Start-->
+    <form action="" method="GET">
+      {% csrf_token %}
+      <div>
+        <div class="p-2">
+          <label class="p-2" for="keywordInput">Tìm Kiếm:</label>
+          <input type="text" name="keyword" value="{{keyword}}">
+          <button type="submit">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="col d-flex justify-content-end">
+    <!--Sort Start-->
+    <div class="dropdown">
+    <!--<button class="btn btn-secondary" type="button" data-bs-toggle="" aria-expanded="false">Limit</button>-->
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Sắp xếp
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="?sort=-created_at{% for k, v in request.GET.items %}{% if k != 'sort' %}&{{ k }}={{ v }}{% endif %}{% endfor %}">Latest</a></li>
+        <li><a class="dropdown-item" href="?sort=created_at{% for k, v in request.GET.items %}{% if k != 'sort'%} &{{ k }}={{v}}{% endif %}{% endfor %}">Oldest</a></li>
+        <li><a class="dropdown-item" href="?sort=product_name{% for k, v in request.GET.items %}{% if k != 'sort' %}&{{ k }}={{v}}{% endif %}{% endfor %}">Product Name</a></li>
+      </ul>
+      </ul>
+    </div>
+    <!--SORT-END-->
+
+    <!--Limit Start-->
+    <div class="dropdown mx-2">
+    <!--<button class="btn btn-secondary" type="button" data-bs-toggle="" aria-expanded="false">Limit</button>-->
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Limit
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="?limit=2{% for k, v in request.GET.items %}{% if k != 'limit' %}&{{ k }}={{ v }}{% endif %}{% endfor %}">2</a></li>
+        <li><a class="dropdown-item" href="?limit=5{% for k, v in request.GET.items %}{% if k != 'limit'%} &{{ k }}={{v}}{% endif %}{% endfor %}">5</a></li>
+        <li><a class="dropdown-item" href="?limit=10{% for k, v in request.GET.items %}{% if k != 'limit' %}&{{ k }}={{v}}{% endif %}{% endfor %}">10</a></li>
+      </ul>
+      </ul>
+    </div>
+    <!--Limit-END-->
+  </div>
+</div>
+
+<div class="row">
+  {% for category in category_list %}
+    <h3>{{ category.category_name }}</h3>
+     {% for item in product_list %}
+      {% if item.category == category %}
+          <div class="col-6 col-mg-4 col-lg-3 p-2">
+            <div class="card" style="width: 18rem;">
+              {% if item.image %}
+              <img src="{{item.image.url}}" class="card-img-top" alt="{{item.product_name}}" width="150">
+              {% endif %}
+              <div class="card-body">
+                <h5 class="card-title" align="center"><a href = "{% url 'product:product_detail' item.id %}">{{item.product_name}}</a></h5>
+                <p class="card-text" align="center">{{item.summary}}</p>
+                <p class="card-text" align="center">{{item.price}}.000đ</p>
+                <center>
+                    <a href="#" class="btn btn-success add-to-cart" data-item-id="{{ item.id }}" data-action="add">Thêm vào giỏ hàng</a>
+                </center>
+              </div>
+
+              {% if item.file %}
+                <a href="{{item.file.url}}" target="_blank"> {{item.get_file_name}} </a>
+              {% endif %}
+
+              {% if item.url %}
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" src="{{item.url}}" allowfullscreen></iframe>
+                </div>
+              {% endif %}
+
+            </div>
+          </div>
+      {% endif %}
+     {% endfor %}
+   <hr/>
+  {% endfor %}
+</div>
+
+<nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item {% if not product_list.has_previous %} disabled {% endif %}">
+      <a class="page-link" href="?page={%if product_list.has_previous %}{{ product_list.previous_page_number }}{% endif %}{% for k, v in request.GET.items %}{% if k != 'page' %}&{{ k }}={{ v }}{% endif %}{% endfor %}" >Previous</a>
+    </li>
+    <li class="page-item active" aria-current="page">
+      <a class="page-link" href="#">{{product_list.number}} / {{product_list.paginator.num_pages}}</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item {% if not product_list.has_next %}disabled{% endif %}">
+      <a class="page-link" href="?page={%if product_list.has_next %}{{ product_list.next_page_number }}{% endif %}{% for k, v in request.GET.items %}{% if k != 'page' %}&{{ k }}={{ v }}{% endif %}{% endfor %}" >Next</a>
+    </li>
+  </ul>
+</nav>
+{% endblock content %}

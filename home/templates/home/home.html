@@ -1,5 +1,331 @@
-{% extends "home/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    {% load static %}
+{#    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">#}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+    <script>
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+      }
+      const csrftoken = getCookie('csrftoken');
+    </script>
+</head>
+<body>
+    <!--=============== Header ===============-->
+    <header class="header">
+      <nav class="navbar">
+        <div class="row d-flex container">
+          <a href="" class="logo d-flex">
+            <img src="/media/images/logo.png" alt="" />
+          </a>
 
-{% block content %}
-<p>Home</p>
-{% endblock content %}
+          <ul class="nav-list d-flex">
+            <a href="{% url 'home:home' %}">Trang chủ</a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'about' %} active {% endif %}" href="{% url 'home:about' %}">Giới thiệu</a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'product_list' %} active {% endif %}" href="{% url 'product:product_list' %}">Menu</a>
+            <a href="">Công thức</a>
+            <a href="/admin/">Admin</a>
+            <span class="close d-flex"><i class="bx bx-x"></i></span>
+          </ul>
+
+          <div class="col d-flex">
+            <form>
+              <input type="search" placeholder="Search your item" />
+              <button class="d-flex"><i class="bx bx-search"></i></button>
+            </form>
+            <div class="cart-icon d-flex">
+              <i class="bx bx-shopping-bag"></i>
+              <span>0</span>
+            </div>
+            {% if request.user.is_authenticated %}
+                <a class="{% if request.resolver_match.url_name == 'log_in' %} active {% endif %}" href="{% url 'log_in:log_in' %}">Đăng nhập</a>
+            {% else %}
+                <a class="{% if request.resolver_match.url_name == 'log_out' %} active {% endif %}" href="{% url 'log_out:log_out' %}">Đăng Xuất</a>
+            {% endif %}
+{#             <p>{{ request.user.first_name }} {{ request.user.last_name }} ({{ request.user.username }})</p>#}
+          </div>
+
+          <!-- Hamburger -->
+{#          <div class="hamburger d-flex">#}
+{#            <i class="bx bx-menu"></i>#}
+{#          </div>#}
+        </div>
+      </nav>
+
+      <!--Content start-->
+      {% block content %}
+      {% endblock content %}
+      <!--content end-->
+
+      <!--=============== Home ===============-->
+      <div class="home">
+        <div class="row container">
+          <div class="col">
+            <div class="faster">
+              Giao hàng nhanh
+              <div class="image d-flex">
+                <img src="/media/images/french-fries.svg" alt="" />
+              </div>
+            </div>
+            <h1>
+              Nhận món ăn <br />
+              được giao tận tay <br />
+              <span class="color">ngay tại cửa nhà bạn</span>
+            </h1>
+            <p>
+              Đồ ăn được giao vào đúng thời điểm. Đối tác giao đồ ăn
+                thời thượng. Thức ăn ngon là những gì chúng tôi cung
+                cấp. Người bạn đồng hành mọi bữa ăn của bạn.
+            </p>
+            <a href="" class="btn">Đặt hàng ngay</a>
+          </div>
+          <div class="col">
+            <img src="/media/images/delivery-guy.svg" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <!--=============== SignIn Form ===============-->
+      <div class="wrapper">
+        <form action="" class="form">
+          <h2>Đăng nhập</h2>
+
+          <div class="control">
+            <label for="">Email:</label>
+            <input type="email" placeholder="Enter Your Email" />
+          </div>
+          <div class="control">
+            <label for="">Password:</label>
+            <input type="password" placeholder="Password" />
+          </div>
+          <div class="checkbox d-flex">
+            <input type="checkbox" />
+            <span>Lưu thông tin đăng nhập</span>
+          </div>
+          <button class="btn">Đăng nhập</button>
+          <div class="links">
+            <span>Bạn quên mật khẩu? <a href="">Nhấn vào đây</a></span>
+            <span>Bạn chưa có tài khoản? <a href="">Tạo tài khoản</a></span>
+          </div>
+        </form>
+
+        <div class="close-form">
+          <i class="bx bx-x"></i>
+        </div>
+      </div>
+    </header>
+
+    <!--=============== Services ===============-->
+    <section class="section services" id="services">
+      <div class="row container">
+        <div class="col">
+          <h2>Tại sao bạn nên chọn chúng tôi?</h2>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="/media/images/meat-icon.svg" alt="" />
+            <h3>
+              Chúng tôi có <br />
+              những gì bạn muốn <br />
+            </h3>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="/media/images/delivery-icon.svg" alt="" />
+            <h3>
+              Giao hàng <br />
+              đến tận cửa<br />
+              nhà bạn
+            </h3>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="/media/images/phone-icon.svg" alt="" />
+            <h3>
+              Chúng tôi có <br />
+              400+ đánh giá <br />
+              trên ứng dụng
+            </h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--=============== About ===============-->
+    <section class="section about" id="about">
+      <div class="row container">
+        <div class="col">
+          <img src="/media/images/delivery-guy-2.svg" alt="" />
+        </div>
+        <div class="col">
+          <h2>Những lợi ích của bạn khi đặt hàng bên chúng tôi</h2>
+          <p>
+            Dịch vụ tốt là dịch vụ chu đáo, phục vụ khách hàng một cách nhiệt tình, chu đáo. Chúng tôi luôn chú trọng nâng cao chất lượng phục vụ, đảm bảo mọi khách hàng đều cảm thấy hài lòng khi sử dụng dịch vụ.
+          </p>
+          <div class="d-grid">
+            <div class="card">
+              <img src="/media/images/car-icon.svg" alt="" />
+              <h4>Miễn phí vận chuyển</h4>
+              <span>Với tất cả đơn hàng có hóa đơn trên 100k và trong bán kính 3km</span>
+            </div>
+            <div class="card">
+              <img src="/media/images/dollar-icon.svg" alt="" />
+              <h4>Hoàn tiền</h4>
+              <span>Cam kết hoàn lại tiền nếu đồ ăn có vấn đề</span>
+            </div>
+            <div class="card">
+              <img src="/media/images/security-icon.svg" alt="" />
+              <h4>Bảo mật thông tin</h4>
+              <span>100% An toàn</span>
+            </div>
+            <div class="card">
+              <img src="/media/images/time-icon.svg" alt="" />
+              <h4>Hỗ trợ khách hàng</h4>
+              <span>Luôn luôn hỗ trợ 24/7</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{#    <!--=============== Recipes ===============-->#}
+{#    <section class="section recipes" id="recipes">#}
+{#      <h2>Thưởng thức các món ăn đặc sắc bên chúng tôi</h2>#}
+{#      <div class="row container">#}
+{#        <div class="filters d-flex">#}
+{#          <span data-filter="All Product">Tất cả món ăn</span>#}
+{#          <span data-filter="Fast Food">Món ăn nhanh</span>#}
+{#          <span data-filter="Rice Menu">Cơm</span>#}
+{#          <span data-filter="Desserts">Món tráng miệng</span>#}
+{#          <span data-filter="Coffee">Coffee</span>#}
+{#          <span data-filter="Pizza">Pizza</span>#}
+{#        </div>#}
+{#        <div class="products">#}
+{#          <div class="swiper mySwiper">#}
+{#            <div class="swiper-wrapper" id="products-wrapper">#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="pagination">#}
+{#            <div class="custom-pagination"></div>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </section>#}
+    <!--=============== App ===============-->
+    <section class="section app">
+      <div class="row container">
+        <div class="col">
+          <div class="circle">
+            <div class="inner-circle"></div>
+            <img src="/media/images/mobile.png" alt="" />
+          </div>
+        </div>
+        <div class="col">
+          <h2>
+            Bạn không lo bị đói! Hãy tải ứng dụng của chúng tôi trên AppStore
+          </h2>
+          <p>
+            Đặt món trực tuyến đã giúp nhiều nhà hàng quản lý giờ cao điểm một cách hiệu quả hơn.
+          </p>
+          <div class="d-flex">
+            <img src="/media/images/app-store.png" alt="" />
+            <img src="/media/images/google-play.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=============== Footer ===============-->
+    <footer class="footer">
+      <div class="row container">
+        <div class="col">
+          <div class="logo d-flex">
+            <img src="/media/images/logo.png" alt="logo" />
+          </div>
+          <p>
+            Giao hàng thức ăn là dịch vụ vận chuyển do các nhà hàng, cửa hàng hoặc đội ngũ giao hàng độc lập thực hiện.
+          </p>
+          <div class="icons d-flex">
+            <div class="icon d-flex">
+              <i class="bx bxl-facebook"></i>
+            </div>
+            <div class="icon d-flex"><i class="bx bxl-twitter"></i></div>
+            <div class="icon d-flex"><i class="bx bxl-linkedin"></i></div>
+          </div>
+        </div>
+        <div class="col">
+          <div>
+            <h4>Company</h4>
+            <a href="">About Us</a>
+            <a href="">Blog</a>
+            <a href="">All Products</a>
+            <a href="">Locations Map</a>
+          </div>
+          <div>
+            <h4>Services</h4>
+            <a href="">Order tracking</a>
+            <a href="">Wish List</a>
+            <a href="">My account</a>
+            <a href="">Terms & Conditions</a>
+          </div>
+          <div>
+            <h4>Support</h4>
+            <a href="">FAQ</a>
+            <a href="">Policy </a>
+            <a href="">Business</a>
+            <a href="">Support Carrer</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <a href="">WhatsApp</a>
+            <a href="">Support 24 </a>
+            <a href="">Quick Chat</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="footer-bottom">
+      <div class="row container d-flex">
+        <p></p>
+        <p>Được làm bởi nhóm 7</p>
+      </div>
+    </div>
+
+    <!--=============== Swiper JS ===============-->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!--=============== Custom JS ===============-->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    {#<script src="{% static '/cart.js' %}"></script>#}
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    {% load static %}
+    <script src="{% static '/js/products.js'%}"></script>
+    <script src="{% static '/js/main.js'%}"></script>
+</body>
+</html>
+

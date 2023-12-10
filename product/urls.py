@@ -4,9 +4,8 @@ from . import views
 app_name = "product"
 
 urlpatterns = [
+    # http://127.0.0.1:8000/product/
     path('', views.product_list, name="product_list"),
+    # http://127.0.0.1:8000/product/detail/1/
     path('detail/<int:id>/', views.product_detail, name="product_detail"),
-    path('add/', views.product_add, name="product_add"),
-    path('edit/<int:id>/', views.product_edit, name="product_edit"),
-    path('delete/<int:id>/', views.product_delete, name="product_delete"),
 ]

@@ -1,10 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu</title>
+    <style>
+        /* CSS styles for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        .return-home {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .return-home a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .return-home a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
+
 <body>
-    <p>About</p>
+    <div class="container">
+        <h1>Giới thiệu</h1>
+        <p>Chào mừng bạn đến với nhà hàng đồ ăn nhanh của chúng tôi, chuyên về pizza và pasta ngon lành!</p>
+
+        <h2>Chúng tôi</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt mollis nisi, vitae dignissim neque
+            varius vitae. Vivamus varius nunc sed erat finibus, vel lacinia neque dapibus. Sed viverra semper leo nec
+            mattis. Nunc vitae faucibus sapien. Fusce sollicitudin, lacus ac dignissim efficitur, est metus aliquam
+            turpis, et eleifend augue tortor a felis. Donec cursus, mi nec sollicitudin aliquam, justo ex fermentum
+            sapien, ac varius turpis purus sit amet odio.</p>
+
+        <h2>Thực đơn của chúng tôi</h2>
+        <ul>
+            <li>Pizza Margherita cổ điển</li>
+            <li>Pizza Pepperoni</li>
+            <li>Pizza Chay</li>
+            <li>Spaghetti Bolognese</li>
+            <li>Fettuccine Alfredo</li>
+            <li>Pasta Pesto</li>
+        </ul>
+
+        <h2>Liên hệ</h2>
+        <div class="contact-info">
+            <p>Nếu bạn có bất kỳ câu hỏi hoặc phản hồi nào, hãy liên hệ với chúng tôi:</p>
+            <p>Email: info@example.com</p>
+            <p>Điện thoại: 123-456-7890</p>
+        </div>
+
+        <div class="return-home">
+            <a class="nav-link active" aria-current="page" href="{% url 'home:home' %}">Quay về trang chủ</a>
+        </div>
+    </div>
 </body>
 </html>
